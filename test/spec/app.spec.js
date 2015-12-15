@@ -5,7 +5,7 @@ describe("Santa", function () {
 
     it("should init the data", function () {
         SantaModel.init();
-        expect(SantaModel.current).toBe(0);
+        expect(SantaModel.current).toBe(-1);
         expect(SantaModel.requests.length).toBe(requests.length);
     });
 
@@ -19,9 +19,9 @@ describe("Santa", function () {
 
     it("check the correct answer", function () {
         SantaController.init();
-        expect(SantaModel.pack("yes")).toBe(0);
-        expect(SantaModel.pack("pippo")).toBe(0);
-        expect(SantaModel.pack("no")).toBe(1);
+        expect(SantaModel.pack("Shampoo")).toBe(-1);
+        expect(SantaModel.pack("pippo")).toBe(-1);
+        expect(SantaModel.pack("Lego")).toBe(1);
     });
 
     it("the controller should check the answer", function () {
