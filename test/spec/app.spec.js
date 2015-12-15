@@ -24,7 +24,14 @@ describe("Santa", function () {
         expect(SantaModel.pack("no")).toBe(1);
     });
 
-    it("..", function () {
+    it("the controller should check the answer", function () {
+        SantaController.init();
+        SantaController.checkAnswer("no");
+        expect(SantaController.points).toBe(1);
+    });
 
+    it("should show next request", function () {
+       SantaController.init();
+        SantaController.showNextRequest();
     });
 });
