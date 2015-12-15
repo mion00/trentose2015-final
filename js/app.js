@@ -11,7 +11,7 @@ var SantaModel = {
     init: function (list) {
         this.packs = [];
         this.requests = requests;
-        this.current = 0;
+        this.current = -1;
     },
 
     /* It moves "current" to the next request */
@@ -36,12 +36,11 @@ var SantaModel = {
      */
     pack: function (item) {
         var request = SantaModel.getCurrentRequest();
-        SantaModel.next();
         if (request != null) {
             if (request.answer == item) {
                 return 1;
             } else {
-                return 0;
+                return -1;
             }
 
         }
@@ -78,6 +77,7 @@ var SantaController = {
         this.showNextRequest();
     },
     showNextRequest: function() {
+        SantaModel.next();
         var request = SantaModel.getCurrentRequest();
         if (request != null) {
             SantaView.showRequest(request);
@@ -94,10 +94,11 @@ var SantaController = {
     },
     checkAnswer: function (answer) {
         var pack = SantaModel.pack(answer);
+        this.points += pack;
+        console.log(this.points);
         if (pack > 0) {
-            this.points += 1;
+            SantaController.showNextRequest();
         }
-        SantaController.showNextRequest();
     }
 };
 
